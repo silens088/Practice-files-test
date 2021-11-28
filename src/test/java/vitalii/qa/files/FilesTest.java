@@ -1,13 +1,11 @@
 package vitalii.qa.files;
 
 import com.codeborne.pdftest.PDF;
-import com.codeborne.selenide.selector.ByText;
 import com.codeborne.xlstest.XLS;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -84,8 +82,5 @@ public class FilesTest extends BaseTest {
                 .contains(XLS_TEXT);
 
         assertTrue(checkPassed);
-
-
-
     }
 }
