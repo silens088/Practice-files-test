@@ -19,10 +19,13 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vitalii.qa.files.DataTest.*;
 
+    @Owner("velichkovv")
+    @Feature("Парсим txt,pdf,xls файлы и проверяем содержимое")
+
 public class FilesTest extends BaseTest {
 
     @Test
-    @Owner("velichkovv")
+
     @DisplayName("Upload to herokuapp.com")
     public void uploadFile() {
         open(UPLOAD_FILE_PAGE_1);
@@ -33,7 +36,6 @@ public class FilesTest extends BaseTest {
     }
 
     @Test
-    @Owner("velichkovv")
     @DisplayName("Upload to demoqa.com")
     public void uploadFile2() {
         open(UPLOAD_FILE_PAGE_2);
@@ -44,7 +46,6 @@ public class FilesTest extends BaseTest {
     }
 
     @Test
-    @Feature("Парсим txt файл и проверяем его содержимое")
     @DisplayName("Download txt file and check")
     public void downloadTXT_FileTest() throws IOException {
         open("https://github.com/junit-team/junit5/blob/main/README.md");
@@ -54,20 +55,17 @@ public class FilesTest extends BaseTest {
     }
 
     @Test
-    @Feature("Парсим pdf файл и проверяем его содержимое")
     @DisplayName("Download pdf file and check")
     public void downloadPDF_FileTest() throws IOException {
         open(DOWNLOAD_FILE_PDF_PAGE);
 
         File pdf = $(byText("Download sample pdf file")).download();
         PDF parsePdf = new PDF(pdf);
-        Assertions.assertEquals(4, parsePdf.numberOfPages);
-        //Assertions.assertEquals("Lorem ipsum", parsePdf.text); !!!не работает блин
-        //Assertions.assertEquals("Lorem ipsum", parsePdf.title); !!!не работает блин
+        //Assertions.assertEquals(4, parsePdf.numberOfPages);
+        assertTrue(parsePdf.text.contains("Lorem ipsum")); //работает =)
     }
 
     @Test
-    @Feature("Парсим XLS файл и проверяем его содержимое")
     @DisplayName("Download XLS file and check")
     public void downloadXLS_FileTest() throws IOException {
         open(DOWNLOAD_FILE_XLS_PAGE);
